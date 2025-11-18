@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia Digital - Plataforma</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h2>Academia <span>Digital</span></h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="active" href="/html/curso.html">📚 Mis cursos</a>
+            <a href="#">🧭 Rutas de aprendizaje</a>
+            <a href="#">🌟 Recomendados</a>
+            <a href="#">👤 Mi perfil</a>
+            <a href="#">⚙ Configuración</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="logout">Cerrar sesión</button>
+        </div>
+    </aside>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main">
+
+        <!-- HEADER SUPERIOR -->
+        <header class="main-header">
+            <input type="text" placeholder="Buscar cursos..." class="search-input">
+            <div class="user-info">
+                <img src="https://i.pravatar.cc/40" alt="usuario">
+            </div>
+        </header>
+
+        <!-- SECCIÓN 1: CONTINUAR VIENDO -->
+        <section class="section">
+            <h2>Continuar viendo</h2>
+
+            <div class="course-row">
+
+                <div class="course-card horizontal">
+                    <img src="/img/Wavy_Trv-02_Single-09.jpg" alt="curso">
+                    <div class="card-info">
+                        <h3>HTML + CSS Profesional</h3>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <span class="progress-text">0% completado</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: MIS CURSOS -->
+        <section class="section">
+            <h2>Mis cursos</h2>
+
+            <div class="course-grid">
+
+                <div class="course-card">
+                    <img src="https://picsum.photos/400/200?random=2">
+                    <h3>Curso de JavaScript moderno</h3>
+                    <p>Aprende diseño web moderno desde cero.</p>
+                </div>
+
+                <div class="course-card">
+                    <img src="https://picsum.photos/400/200?random=3">
+                    <h3>Python Básico</h3>
+                    <p>Fundamentos sólidos de programación.</p>
+                </div>
+
+                <div class="course-card">
+                    <img src="https://picsum.photos/400/200?random=4">
+                    <h3>Diseño UX/UI</h3>
+                    <p>Diseño centrado en el usuario con proyectos reales.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: RECOMENDADOS -->
+        <section class="section">
+            <h2>Recomendados para ti</h2>
+
+            <div class="course-grid">
+
+                <div class="course-card">
+                    <img src="https://picsum.photos/400/200?random=5">
+                    <h3>React para principiantes</h3>
+                    <p>Crea interfaces modernas paso a paso.</p>
+                </div>
+
+                <div class="course-card">
+                    <img src="https://picsum.photos/400/200?random=6">
+                    <h3>Ilustración Digital</h3>
+                    <p>Aprende técnicas de dibujo digital.</p>
+                </div>
+
+                <div class="course-card">
+                    <img src="https://picsum.photos/400/200?random=7">
+                    <h3>Marketing Digital Completo</h3>
+                    <p>Domina SEO, redes y publicidad.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
