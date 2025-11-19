@@ -55,13 +55,13 @@ h3 {
 }
 
 .btn {
-    display: inline-block;
+    display: flex;
     padding: 12px 25px;
     background: #0F82F8;
     color: white;
     text-decoration: none;
     border-radius: 6px;
-    margin: 15px 0;
+    margin: 1px 0;
     border: none;
     /* Agregado para quitar borde por defecto en botones */
     cursor: pointer;
@@ -196,7 +196,7 @@ h3 {
 }
 
 textarea {
-    width: 100%;
+    width: 30%;
     height: 100px;
     margin-top: 15px;
     border-radius: 6px;
