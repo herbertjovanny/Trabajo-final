@@ -23,6 +23,8 @@ body {
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 100;
+    /* Aseguramos que esté sobre contenido normal pero bajo el modal */
 }
 
 .sidebar-logo h2 {
@@ -100,6 +102,8 @@ body {
 /* SECTIONS */
 .section {
     margin-bottom: 50px;
+    scroll-margin-top: 20px;
+    /* Para que el scroll no quede pegado arriba */
 }
 
 .section h2 {
@@ -107,7 +111,162 @@ body {
     margin-bottom: 20px;
 }
 
-/* COURSE GRID */
+/* ----------------------- PERFIL WIDGET (NUEVO) ----------------------- */
+.profile-widget {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.profile-header img {
+    border-radius: 50%;
+    border: 3px solid #0F82F8;
+}
+
+.profile-details h3 {
+    font-size: 20px;
+    color: #0A2342;
+    margin-bottom: 5px;
+}
+
+.profile-details .badge {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #0F82F8;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.profile-stats-grid {
+    display: flex;
+    gap: 30px;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-num {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0F82F8;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #777;
+}
+
+/* ----------------------- RUTA DE APRENDIZAJE (NUEVO) ----------------------- */
+.learning-path-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+}
+
+.path-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    min-width: 120px;
+    z-index: 2;
+}
+
+/* Interactividad */
+.path-step.clickable {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.path-step.clickable:hover {
+    transform: translateY(-5px);
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #aaa;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    border: 3px solid #fff;
+}
+
+.step-content h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #0A2342;
+}
+
+.step-content p {
+    font-size: 12px;
+    color: #888;
+}
+
+.path-line {
+    flex: 1;
+    height: 4px;
+    background: #f0f0f0;
+    margin: 0 10px;
+    margin-bottom: 45px;
+    border-radius: 2px;
+}
+
+/* Estados */
+.path-step.completed .step-icon {
+    background: #0F82F8;
+    color: white;
+    box-shadow: 0 0 0 4px #e3f2fd;
+}
+
+.path-line.completed {
+    background: #0F82F8;
+}
+
+.path-step.active-step .step-icon {
+    background: white;
+    border: 3px solid #0F82F8;
+    color: #0F82F8;
+    transform: scale(1.2);
+}
+
+.path-step.locked .step-icon {
+    background: #e9ecef;
+    color: #adb5bd;
+}
+
+/* ----------------------- COURSE GRID & CARDS ----------------------- */
 .course-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -117,7 +276,7 @@ body {
 .course-card {
     background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     padding: 0 0 20px;
     overflow: hidden;
     transition: transform .2s;
@@ -133,9 +292,21 @@ body {
     object-fit: cover;
 }
 
+.course-row a,
+.course-grid a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .course-card h3 {
     padding: 15px;
     font-size: 18px;
+    color: #0A2342;
+    transition: color 0.3s ease;
+}
+
+.course-card:hover h3 {
+    color: #0F82F8;
 }
 
 .course-card p {
@@ -180,6 +351,125 @@ body {
     color: #333;
 }
 
+/* ----------------------- MODAL (NUEVO) ----------------------- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 35, 66, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+}
+
+.close-modal:hover {
+    color: #FF5050;
+}
+
+.modal-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.modal-badge {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.badge-completed {
+    background: #D1FAE5;
+    color: #059669;
+}
+
+.badge-active {
+    background: #DBEAFE;
+    color: #2563EB;
+}
+
+.badge-locked {
+    background: #F3F4F6;
+    color: #6B7280;
+}
+
+.modal-body h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.modal-resources ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.modal-resources li {
+    margin-bottom: 5px;
+}
+
+.btn-primary {
+    background: #0F82F8;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #095cb5;
+}
+
 /* ----------------- RESPONSIVE ----------------- */
 
 @media (max-width: 850px) {
@@ -190,5 +480,40 @@ body {
     .main {
         margin-left: 0;
         width: 100%;
+    }
+
+    /* Ajuste responsive para el perfil */
+    .profile-widget {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-stats-grid {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* Ajuste responsive para la ruta (Vertical en móvil) */
+    .learning-path-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        overflow-x: hidden;
+    }
+
+    .path-step {
+        flex-direction: row;
+        text-align: left;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .step-icon {
+        margin-bottom: 0;
+        margin-right: 15px;
+    }
+
+    .path-line {
+        display: none;
     }
 }
